@@ -1,8 +1,8 @@
-**CORONA DASHBOARD**
+# CORONA DASHBOARD
 
     This project was build based with node js version 16.9.1
 
-*Deploy Steps*
+## Deploy Steps
 
 1. Clone repo
    `git clone `
