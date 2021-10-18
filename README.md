@@ -5,7 +5,7 @@
 ## Deploy Steps
 
 1. Clone repo
-   `git clone `
+   `git clone https://github.com/CaroRod/corona-dashboard.git`
 2. Go to project folder
    `cd corona-dashboard`
 3. Instal required dependences
