@@ -1,0 +1,24 @@
+{
+  "name": "corona-dashboard",
+  "version": "0.0.1",
+  "description": "Dasboard with COVID-19 global stats.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.mjs"
+  },
+  "keywords": [
+    "node.js",
+    "dashboard"
+  ],
+  "type": "module",
+  "author": "caroRod",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-paginate": "^1.0.2",
+    "node-fetch": "^3.0.0",
+    "path": "^0.12.7"
+  }
+}

@@ -1,0 +1,102 @@
+<%- include('_header') -%>
+
+    <div class="main">
+        <div class="container">
+            <div class="chart-container">
+                <canvas id="casesChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="recoveredChart"></canvas>
+            </div>
+        </div>
+        <div class="container">
+            <div class="chart-container">
+                <canvas id="deathsChart"></canvas>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <span class="active" data-tab-value="#tab_1">List by country</span>
+            <span data-tab-value="#tab_2">Global data per day</span>
+        </div>
+        
+        <div class="tab-content">
+            <div class="tab active" id="tab_1" data-tab-info>
+                <div class="controllers-box">
+                    Rows: 
+                    <select onchange="location = this.options[this.selectedIndex].value;">
+                        <option value="/?page=&<%- page %>limit=5" <% if(limit == 5){%> selected <% } %> >5</option>
+                        <option value="/?page=<%- page %>&limit=10" <% if(limit == 10){%> selected <% } %> >10</option>
+                        <option value="/?page=<%- page %>&limit=15" <% if(limit == 15){%> selected <% } %> >15</option>
+                        <option value="/?page=<%- page %>&limit=20" <% if(limit == 20){%> selected  <% } %> >20</option>
+                    </select>
+                </div>
+                <table>
+                    <tr>
+                        <th>Country</th>
+                        <th>Cases</th>
+                        <th>Today cases</th>
+                        <th>Recovered</th>
+                        <th>Today recovered</th>
+                        <th>Deceased</th>
+                        <th>Today deceased</th>
+                        <th>Tests</th>
+                        <th>Today tests</th>
+                        <th>Active cases</th>
+                        <th>Critical cases</th>
+                        <th>Date last update</th>
+                    </tr>
+                    <%for (const country of countriesData) {%>
+                        <%# Object.entries(country) %>
+                        <tr>
+                            <%for (const [key, value] of Object.entries(country)) {%>
+                                <td><%= value %></td>
+                            <%}%>
+                        </tr>
+
+                    <%}%>
+                    
+                </table>
+                <div class="controllers-box">
+                    <div class="paginator">
+                        <%for (const page of paginator) {%>
+                            <%- page %>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+            <div class="tab" id="tab_2" data-tab-info>
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Cases</th>
+                        <th>Recovered</th>
+                        <th>Deceased</th>
+                    </tr>
+                    <%for (const entry of generalTable) {%>
+                        <%# Object.entries(entry) %>
+                        <tr>
+                            <%for (const [key, value] of Object.entries(entry)) {
+                                let background = ''
+                                if('cases' == key && maxCases == value){
+                                    background = '#EFC369';
+                                }
+                                if('recovered' == key && maxRecovered == value){
+                                    background = '#9EBCA7';
+                                }
+                                if('deaths' == key && maxDeaths == value){
+                                    background = '#C46C67';
+                                }
+                                %>
+                                <td style="background-color: <%= background %>" ><%= value %></td>
+                            <%}%>
+                        </tr>
+
+                    <%}%>
+                    
+                </table>
+            </div>
+        </div>
+    </div>  
+
+<%- include('_footer') -%>
